@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { inserir } from 'src/app/model/inserir.model';
 import { Mesa } from 'src/app/model/Mesa.model';
-import { InserirService } from 'src/app/services/inserir.service';
-import { listarService } from 'src/app/services/listar.service';
+import { InserirService } from '../../services/inserir.service';
+import { listarService } from '../../services/listar.service';
 
 @Component({
   selector: 'app-detalhes',
@@ -54,7 +54,7 @@ export class DetalhesPage implements OnInit {
   inserir() {
     this.inserirService.inserir(this.inserirmodel).subscribe(
       retorno => {
-        this.router.navigate(['mesas/'+this.id])
+        window.location.reload();
       }
     )
     

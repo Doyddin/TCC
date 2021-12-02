@@ -1,0 +1,36 @@
+drop database if exists restaurante;
+create database if not exists restaurante;
+use restaurante;
+
+create table produto(
+	pro_id int not null primary key auto_increment,
+	nome varchar(45) not null,
+	preco decimal(4,2) not null);
+
+create table mesas(
+	mesa_id int not null,
+	produto int not null,
+	quantidade int not null);
+
+insert into produto(nome,preco) values
+	("Lanche X-Tudo",24.90),
+	("Lanche X-Bacon",32.50),
+	("Lanche X-Salada",15.30),
+	("Hot Dog",12.60),
+	("Lanche x-Egg",20.00),
+	("Coca-Cola de 1L",07.90),
+	("Coca-Cola Lata",04.20),
+	("Suco de Laranja",06.00),
+	("Suco de Abacaxi",06.50),
+	("Suco de Morango",04.99),
+	("Prato Arroz com Feijoada", 32.50),
+	("Prato Arroz Bisteca e Farofa",28.90);    
+
+
+insert into mesas(mesa_id,produto,quantidade) values
+	(1,2,3),
+	(3,4,6),
+	(2,5,54),
+	(1,6,23),
+	(2,3,2),
+	(3,11,3);	
