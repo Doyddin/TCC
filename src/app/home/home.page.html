@@ -1,20 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Listagem de Produtos
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<ng-template #carregando>
+  Carregando Produtos...
+</ng-template>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-grid *ngIf="listaProduto | async as pedidos; else carregando">
+      <ion-row>
+        <ion-col size="4">
+          Mesa
+        </ion-col>
+        <ion-col size="3">
+          Nome
+        </ion-col>
+        <ion-col size="3">
+          Quantidade
+        </ion-col>
+      </ion-row>
+        <ion-row *ngFor="let p of pedidos" >
+            <ion-col size="4">{{p.id}}</ion-col>
+            <ion-col size="3">{{p.nome}}</ion-col>
+            <ion-col  size="4">{{p.quantidade}}</ion-col>
+        </ion-row>
+      
+      </ion-grid>
   </div>
 </ion-content>
+

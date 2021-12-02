@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mesa {{id}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-template #carregando>
+    Carregando Produtos...
+  </ng-template>
+  <ion-grid *ngIf="listaProduto | async as pedidos; else carregando">
+    <ion-row style="font-size: 14px">
+      <ion-col size="3" style="font-size: 12px;">
+        Quantidade
+      </ion-col>
+      <ion-col size="4" style="font-size: 12px;">
+        Nome
+      </ion-col>
+      <ion-col size="4" style="font-size: 12px;">
+        Preço
+      </ion-col>
+    </ion-row>
+      <ion-row *ngFor="let p of pedidos">
+        <ion-col size="3"style="font-size: 14px">{{p.quantidade}}</ion-col>  
+        <ion-col size="4" style="font-size: 12px">{{p.nome}}</ion-col>
+        <ion-col size="4" style="font-size: 14px">R$ {{p.preco}}</ion-col>
+      </ion-row>
+    
+    </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar> 
+    <ion-title><p position="middle"> Preço Total: R$ {{precoTotal}}</p></ion-title>
+  </ion-toolbar>
+</ion-footer>
