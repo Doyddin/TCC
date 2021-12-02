@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { inserir } from 'src/app/model/inserir.model';
 import { Mesa } from 'src/app/model/Mesa.model';
+import { InserirService } from 'src/app/services/inserir.service';
 import { listarService } from 'src/app/services/listar.service';
 
 @Component({
@@ -19,12 +21,19 @@ export class DetalhesPage implements OnInit {
     precototal : 0,
     quantidade: 0
   }
+  inserirmodel: inserir = {
+    mesa: this.id = this.activeRoute.snapshot.params["id"],
+    quantidade: null,
+    proid: null
+    
+  }
   listaProduto: Observable<Mesa[]>;
 
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private listarService: listarService
+    private listarService: listarService,
+    private inserirService: InserirService
   ) { }
 
   ngOnInit() {
@@ -41,9 +50,13 @@ export class DetalhesPage implements OnInit {
         });
       }
       );
-
-
-
   }
-
+  inserir() {
+    this.inserirService.inserir(this.inserirmodel).subscribe(
+      retorno => {
+        this.router.navigate(['mesas/'+this.id])
+      }
+    )
+    
+  }
 }
